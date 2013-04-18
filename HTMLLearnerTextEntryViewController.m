@@ -9,30 +9,57 @@
 #import "HTMLLearnerTextEntryViewController.h"
 
 @interface HTMLLearnerTextEntryViewController ()
-
+@property (strong, nonatomic) NSString* lessonCode;
+@property (strong, nonatomic) NSString* lessonID;
+@property (weak, nonatomic) IBOutlet UITextView *hintTextField;
 @end
 
 @implementation HTMLLearnerTextEntryViewController
+@synthesize userEntryTextField = _userEntryTextField, lessonCode = _lessonCode, lessonID = _lessonID, hintTextField = _hintTextField;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(void)showCode:(NSString *)code forLesson:(NSString *)lesson
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    //NSLog(@"received code in text entry %@ for lesson %@.", code, lesson);
+    _lessonID = lesson;
+    _lessonCode = code;
+}
+
+- (IBAction)testCode:(id)sender
+{
+    [self performSegueWithIdentifier:@"testMyCodeSegue" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"testMyCodeSegue"])
+    {
+        NSString *data = [_userEntryTextField text];
+        //load HTML from textview into webview
+        [segue.destinationViewController loadWithHTMLData:data forLesson:_lessonCode];
     }
-    return self;
 }
 
-- (void)viewDidLoad
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    [[self navigationController] setTitle:_lessonID];
+    [_hintTextField setText:_lessonCode];
+    [super viewWillAppear:animated];
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)addLeftBracket:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [_userEntryTextField setText:[NSString stringWithFormat:@"%@%@", [_userEntryTextField text], @"<"]];
 }
+
+- (IBAction)addRightBracket:(id)sender
+{
+    [_userEntryTextField setText:[NSString stringWithFormat:@"%@%@", [_userEntryTextField text], @">"]];
+}
+
+- (IBAction)addNBSP:(id)sender
+{
+    [_userEntryTextField setText:[NSString stringWithFormat:@"%@%@", [_userEntryTextField text], @"&nbsp"]];
+}
+
 
 @end

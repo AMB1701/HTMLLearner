@@ -7,32 +7,37 @@
 //
 
 #import "HTMLLearnerLessonPreviewViewController.h"
+#import "HTMLLearnerTextEntryViewController.h"
 
 @interface HTMLLearnerLessonPreviewViewController ()
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end
 
 @implementation HTMLLearnerLessonPreviewViewController
+@synthesize webView, lessonCode = _lessonCode, lessonData = _lessonData;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(void) showCode:(NSString *)code forLesson:(NSString *)lesson
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    //NSLog(@"received code in preview %@ for lesson %@.", code, lesson);
+    _lessonData = lesson;
+    _lessonCode = code;
 }
 
-- (void)viewDidLoad
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    [webView loadHTMLString:_lessonCode baseURL:nil];
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)moveToEntry:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self performSegueWithIdentifier:@"toTextEntrySegue" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"toTextEntrySegue"])
+        [segue.destinationViewController showCode:_lessonCode forLesson:_lessonData];
 }
 
 @end

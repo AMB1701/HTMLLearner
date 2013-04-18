@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HTMLLearnerLessonPreviewViewController : UIViewController
-
+@property (nonatomic, strong) NSString *lessonCode;
+@property (nonatomic, strong) NSString *lessonData;
+-(void) showCode:(NSString *)code forLesson:(NSString *)lesson;
 @end

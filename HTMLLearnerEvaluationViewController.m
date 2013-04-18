@@ -9,30 +9,44 @@
 #import "HTMLLearnerEvaluationViewController.h"
 
 @interface HTMLLearnerEvaluationViewController ()
+@property (strong, nonatomic) NSString* dataEntered;
+@property (strong, nonatomic) NSString* lessonAnswer;
+@property (weak, nonatomic) IBOutlet UILabel *expectedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *actualLabel;
+@property (weak, nonatomic) IBOutlet UILabel *happyLabel;
 
 @end
 
 @implementation HTMLLearnerEvaluationViewController
+@synthesize dataEntered = _dataEntered, lessonAnswer = _lessonAnswer, expectedLabel = _expectedLabel, actualLabel = _actualLabel, happyLabel = _happyLabel;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(void)checkString:(NSString *)data forLesson:(NSString *)lesson
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    _dataEntered = data;
+    _lessonAnswer = lesson;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    _expectedLabel.text = [NSString stringWithFormat:@"Expected: %@", _lessonAnswer];
+    _actualLabel.text = [NSString stringWithFormat:@"Received: %@", _dataEntered];
+    if([_dataEntered isEqualToString:_lessonAnswer])
+    {
+        _happyLabel.text = @"Great job!";
+        //NSLog(@"Lesson completed successfully.");
     }
-    return self;
+    else
+    {
+        _happyLabel.text = @"Looks like there were some mistakes...";
+        //NSLog(@"Lesson incomplete.");
+    }
+    
+    [super viewWillAppear:animated];
 }
 
-- (void)viewDidLoad
+- (IBAction)chooseNewLesson:(id)sender
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self performSegueWithIdentifier:@"returnToLessonListSegue" sender:self];
 }
 
 @end

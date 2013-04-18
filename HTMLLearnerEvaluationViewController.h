@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface HTMLLearnerEvaluationViewController : UIViewController
-
+-(void)checkString:(NSString *)data forLesson:(NSString *)lesson;
 @end

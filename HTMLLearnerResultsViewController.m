@@ -7,32 +7,53 @@
 //
 
 #import "HTMLLearnerResultsViewController.h"
+#import "HTMLLearnerEvaluationViewController.h"
 
 @interface HTMLLearnerResultsViewController ()
-
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) NSString *pageData;
+@property (strong, nonatomic) NSString *lessonData;
 @end
 
 @implementation HTMLLearnerResultsViewController
+@synthesize webView, pageData = _pageData, lessonData = _lessonData;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+- (IBAction)doEvaluation:(id)sender
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    [self performSegueWithIdentifier:@"evaluateSegue" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"evaluateSegue"])
+    {
+        [segue.destinationViewController checkString:_pageData forLesson:_lessonData];
     }
-    return self;
 }
 
-- (void)viewDidLoad
+-(void)loadWithHTMLData:(NSString *) data forLesson:(NSString *)lesson
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    //NSLog(@"received html string: %@", data);
+    //NSLog(@"received solution: %@", lesson);
+    _pageData = data;
+    _lessonData = lesson;
 }
 
-- (void)didReceiveMemoryWarning
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [webView loadHTMLString:_pageData baseURL:nil];
+    [super viewWillAppear:animated];
+}
+
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    return YES;
+}
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    NSLog(@"webview error: %@", error);
 }
 
 @end

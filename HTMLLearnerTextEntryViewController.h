@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HTMLLearnerResultsViewController.h"
 
 @interface HTMLLearnerTextEntryViewController : UIViewController
-
+@property (weak, nonatomic) IBOutlet UITextView *userEntryTextField;
+-(void)showCode:(NSString *)code forLesson:(NSString *)lesson;
 @end

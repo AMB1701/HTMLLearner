@@ -7,23 +7,38 @@
 //
 
 #import "HTMLLearnerViewController.h"
+#import "HTMLLearnerLessonChoiceViewController.h"
 
 @interface HTMLLearnerViewController ()
+@property (nonatomic, strong) NSString *chosenLanguage;
 
 @end
 
 @implementation HTMLLearnerViewController
+@synthesize chosenLanguage = _chosenLanguage;
 
-- (void)viewDidLoad
+- (IBAction)segueToLessons:(id)sender
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    [self performSegueWithIdentifier:@"toLessonsSegue" sender:self];
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)segueToHTMLLessons:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    _chosenLanguage = @"HTML";
+    [self performSegueWithIdentifier:@"toLessonListSegue" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"toLessonListSegue"])
+    {
+        [segue.destinationViewController listItemsForLanguage:_chosenLanguage];
+    }
+}
+
+- (IBAction)toCredits:(id)sender
+{
+    [self performSegueWithIdentifier:@"toCreditsSegue" sender:self];
 }
 
 @end

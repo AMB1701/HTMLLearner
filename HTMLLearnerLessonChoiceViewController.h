@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HTMLLearnerLessonChoiceViewController : UIViewController
+@interface HTMLLearnerLessonChoiceViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+{
+    NSArray *tableData;
+    NSArray *lessonContent;
+}
+@property (nonatomic, retain) NSArray *tableData;
+@property (nonatomic, retain) NSArray *lessonContent;
+@property (nonatomic, strong) NSString *lessonData;
+@property (nonatomic, strong) NSString *lessonTitle;
+
+-(void)listItemsForLanguage:(NSString *)language;
+
 
 @end

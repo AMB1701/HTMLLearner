@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HTMLLearnerResultsViewController : UIViewController
+@interface HTMLLearnerResultsViewController : UIViewController <UIWebViewDelegate>
+
+-(void)loadWithHTMLData:(NSString *)data forLesson:(NSString *)data;
 
 @end
