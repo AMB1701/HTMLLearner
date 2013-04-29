@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HTMLLearnerLessonObject.h"
 
 @interface HTMLLearnerEvaluationViewController : UIViewController
--(void)checkString:(NSString *)data forLesson:(NSString *)lesson;
+-(void)checkString:(NSString *)data forLesson:(HTMLLearnerLessonObject *)lesson;
 @end

@@ -11,10 +11,11 @@
 
 @interface HTMLLearnerLessonChoiceViewController ()
 @property (strong, nonatomic) NSString *lang;
+@property (strong, nonatomic) NSMutableArray * lessonList;
 @end
 
 @implementation HTMLLearnerLessonChoiceViewController
-@synthesize tableData = _tableData, lessonData = _lessonData, lessonTitle = _lessonTitle, lessonContent = _lessonContent, lang = _lang;
+@synthesize tableData = _tableData, lessonTitle = _lessonTitle, lang = _lang, lessonList = _lessonList, lessonData = _lessonData;
 
 -(void)listItemsForLanguage:(NSString *)language
 {
@@ -28,11 +29,10 @@
         _lang = @"HTML";
     [self navigationController].title = [@"Lesson Choices:" stringByAppendingString:_lang];
     
-    _tableData = [[NSArray alloc] initWithObjects:@"Test Lesson 1", @"Test Lesson 2", nil];
-    _lessonContent = [[NSArray alloc] initWithObjects:@"<b>Hello, world!</b>",@"<b><i>OMG!</b></i>", nil];
-    /*
     NSString *content;
     NSString *path;
+    
+    _lessonList = [[NSMutableArray alloc] init];
     
     if([_lang isEqualToString:@"HTML"])
     {
@@ -45,9 +45,45 @@
         content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
         //NSLog(@"path is %@", path);
         if(content)
-            NSLog(@"content is %@", content);
-    }*/
+        {
+            while ([content length] > 0)
+            {
+                NSString *s = [self nextTokenFromString:content];
+                content = [content substringFromIndex:[s length]+2];
+                if([s isEqualToString:@"<Lesson>"])
+                {
+                    NSString *t = [self nextTokenFromString:content];
+                    content = [content substringFromIndex:[t length]+2];
+                    NSString *c = [self nextTokenFromString:content];
+                    content = [content substringFromIndex:[c length]+2];
+                    NSString *sol = [self nextTokenFromString:content];
+                    content = [content substringFromIndex:[sol length]+2];
+                    //NSLog(@"found title: %@\n  content:%@\n  solution:%@", t, c, sol);
+                    HTMLLearnerLessonObject *lesson = [[HTMLLearnerLessonObject alloc] init];
+                    [lesson setTitle:t];
+                    [lesson setContent:c];
+                    [lesson setSolution:sol];
+                    [_lessonList addObject:lesson];
+                    //NSLog(@"lessonList size is now: %d", [_lessonList count]);
+                }
+            }
+            
+        }
+    }
+    
+    _tableData = [[NSArray alloc] initWithArray:[_lessonList copy]];
+                  //initWithObjects:@"Test Lesson 1", @"Test Lesson 2", nil];
 }
+
+-(NSString *)nextTokenFromString:(NSString *)c
+{
+    NSRange r = [c rangeOfString:@"\n"];
+    NSString *t = [c substringToIndex:r.location];
+    t = [t stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    //NSLog(@"returning %@", t);
+    return t;
+}
+
 
 - (IBAction)beginLesson:(id)sender
 {
@@ -58,9 +94,8 @@
 {
     if([segue.identifier isEqualToString:@"toSolutionPreviewSegue"])
     {
-        _lessonData = [NSString stringWithFormat:@"<html><body>%@</body></html>", _lessonData];
         //NSLog(@"fired lesson %@ with data %@", _lessonTitle, _lessonData);
-        [segue.destinationViewController showCode:_lessonData forLesson:_lessonTitle];
+        [segue.destinationViewController shareLesson:_lessonData];
     }
 }
 
@@ -79,9 +114,7 @@
     if(!cell)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"lessonCell"];
     
-    cell.textLabel.text = [_tableData objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = [_lessonContent objectAtIndex:indexPath.row];
-    
+    cell.textLabel.text = [HTMLLearnerLessonObject stripTags:[[_tableData objectAtIndex:indexPath.row] getTitle]];
     //NSLog(@"filled cell with %@", cell.textLabel.text);
     
     return cell;
@@ -91,8 +124,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _lessonTitle = [_tableData objectAtIndex:indexPath.row];
-    _lessonData = [_lessonContent objectAtIndex:indexPath.row];
+    _lessonData = [_tableData objectAtIndex:indexPath.row];
 }
 
 @end

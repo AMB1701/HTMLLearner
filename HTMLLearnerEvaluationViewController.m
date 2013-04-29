@@ -11,25 +11,40 @@
 @interface HTMLLearnerEvaluationViewController ()
 @property (strong, nonatomic) NSString* dataEntered;
 @property (strong, nonatomic) NSString* lessonAnswer;
-@property (weak, nonatomic) IBOutlet UILabel *expectedLabel;
-@property (weak, nonatomic) IBOutlet UILabel *actualLabel;
+@property (nonatomic) NSUInteger errors;
+@property (weak, nonatomic) IBOutlet UIWebView *expectedView;
+@property (weak, nonatomic) IBOutlet UIWebView *actualView;
 @property (weak, nonatomic) IBOutlet UILabel *happyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *errorsLabel;
 
 @end
 
 @implementation HTMLLearnerEvaluationViewController
-@synthesize dataEntered = _dataEntered, lessonAnswer = _lessonAnswer, expectedLabel = _expectedLabel, actualLabel = _actualLabel, happyLabel = _happyLabel;
+@synthesize dataEntered = _dataEntered, lessonAnswer = _lessonAnswer, expectedView = _expectedView, actualView = _actualView, happyLabel = _happyLabel, errorsLabel = _errorsLabel, errors;
 
--(void)checkString:(NSString *)data forLesson:(NSString *)lesson
+-(void)checkString:(NSString *)data forLesson:(HTMLLearnerLessonObject *)lesson
 {
     _dataEntered = data;
-    _lessonAnswer = lesson;
+    _lessonAnswer = [lesson getSolution];
+    
+    errors = 0;
+    
+    for (NSUInteger i=0; i<[data length] && i < [_lessonAnswer length]; i++)
+    {
+        if ([data characterAtIndex:i] != [_lessonAnswer characterAtIndex:i])
+        {
+            //NSString *hint = [NSString stringWithFormat:@"%c", [_lessonAnswer characterAtIndex:i]];
+            //NSLog(@"Mismatch found, hint is: %@",hint);
+            errors++;
+        }
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    _expectedLabel.text = [NSString stringWithFormat:@"Expected: %@", _lessonAnswer];
-    _actualLabel.text = [NSString stringWithFormat:@"Received: %@", _dataEntered];
+    [_expectedView loadHTMLString:_lessonAnswer baseURL:nil]; 
+    [_actualView loadHTMLString:_dataEntered baseURL:nil];
+    _errorsLabel.text = [NSString stringWithFormat:@"Total errors found: %d", errors];
     if([_dataEntered isEqualToString:_lessonAnswer])
     {
         _happyLabel.text = @"Great job!";

@@ -11,21 +11,24 @@
 
 @interface HTMLLearnerLessonPreviewViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UILabel *lessonLabel;
+
 
 @end
 
 @implementation HTMLLearnerLessonPreviewViewController
-@synthesize webView, lessonCode = _lessonCode, lessonData = _lessonData;
+@synthesize webView, lessonCode = _lessonCode, lessonData = _lessonData, lessonLabel = _lessonLabel;
 
--(void) showCode:(NSString *)code forLesson:(NSString *)lesson
+-(void) shareLesson:(HTMLLearnerLessonObject *)lesson
 {
     //NSLog(@"received code in preview %@ for lesson %@.", code, lesson);
     _lessonData = lesson;
-    _lessonCode = code;
+    _lessonCode = [lesson getSolution];;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [_lessonLabel setText:[HTMLLearnerLessonObject stripTags:[_lessonData getTitle]]];
     [webView loadHTMLString:_lessonCode baseURL:nil];
 }
 
@@ -37,7 +40,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"toTextEntrySegue"])
-        [segue.destinationViewController showCode:_lessonCode forLesson:_lessonData];
+        [segue.destinationViewController shareLesson:_lessonData];
 }
 
 @end

@@ -1,5 +1,10 @@
 <Lesson>
-	<title>"Lesson 1"</title>
-	<content>"Learn about simple tags."</content>
-	<solution>"<html><body><b>Hello, world!</b></body></html>"</solution>
-	</>
+	<title>Lesson 1: Headings</>
+	<content><html<body><h2>Headings</h2><p>In the box below, place the following headline in an &lth2&gt header:</p>&nbsp&nbsp<h2>"The Greatest Headline in the World"</h2></p></body></html></>
+	<solution><html><body><h2>"The Greatest Headline in the World"</h2></body></html></>
+
+<Lesson>
+    <title>Lesson 2: Time Machine</>
+    <content>Text goes here!</>
+    <solution><html> answer!</html></>
+

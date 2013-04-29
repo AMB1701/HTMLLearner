@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HTMLLearnerLessonObject.h"
 
 @interface HTMLLearnerResultsViewController : UIViewController <UIWebViewDelegate>
 
--(void)loadWithHTMLData:(NSString *)data forLesson:(NSString *)data;
+-(void)loadWithHTMLData:(NSString *)data forLesson:(HTMLLearnerLessonObject *)lesson;
 
 @end

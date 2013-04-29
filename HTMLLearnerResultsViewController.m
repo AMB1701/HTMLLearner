@@ -12,11 +12,12 @@
 @interface HTMLLearnerResultsViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (strong, nonatomic) NSString *pageData;
-@property (strong, nonatomic) NSString *lessonData;
+@property (weak, nonatomic) IBOutlet UILabel *lessonLabel;
+@property (strong, nonatomic) HTMLLearnerLessonObject *lessonData;
 @end
 
 @implementation HTMLLearnerResultsViewController
-@synthesize webView, pageData = _pageData, lessonData = _lessonData;
+@synthesize webView, pageData = _pageData, lessonData = _lessonData, lessonLabel;
 
 
 - (IBAction)doEvaluation:(id)sender
@@ -32,7 +33,7 @@
     }
 }
 
--(void)loadWithHTMLData:(NSString *) data forLesson:(NSString *)lesson
+-(void)loadWithHTMLData:(NSString *) data forLesson:(HTMLLearnerLessonObject *)lesson
 {
     //NSLog(@"received html string: %@", data);
     //NSLog(@"received solution: %@", lesson);
@@ -43,6 +44,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [webView loadHTMLString:_pageData baseURL:nil];
+    [lessonLabel setText:[HTMLLearnerLessonObject stripTags:[_lessonData getTitle]]];
     [super viewWillAppear:animated];
 }
 

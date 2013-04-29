@@ -10,4 +10,12 @@
 
 @interface HTMLLearnerLessonObject : NSObject
 
+-(void) setTitle:(NSString *)t;
+-(void) setContent:(NSString *)newContent;
+-(void) setSolution:(NSString *)newSolution;
++(NSString *) stripTags:(NSString *)tagged;
+-(NSString *)getTitle;
+-(NSString *)getContent;
+-(NSString *)getSolution;
+
 @end

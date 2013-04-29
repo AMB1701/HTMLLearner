@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HTMLLearnerLessonObject.h"
 
 @interface HTMLLearnerLessonPreviewViewController : UIViewController
+@property (nonatomic, strong) HTMLLearnerLessonObject *lessonData;
 @property (nonatomic, strong) NSString *lessonCode;
-@property (nonatomic, strong) NSString *lessonData;
--(void) showCode:(NSString *)code forLesson:(NSString *)lesson;
+-(void) shareLesson:(HTMLLearnerLessonObject *)lesson;
 @end

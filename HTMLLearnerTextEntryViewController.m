@@ -11,17 +11,18 @@
 @interface HTMLLearnerTextEntryViewController ()
 @property (strong, nonatomic) NSString* lessonCode;
 @property (strong, nonatomic) NSString* lessonID;
-@property (weak, nonatomic) IBOutlet UITextView *hintTextField;
+@property (weak, nonatomic) IBOutlet UIWebView *hintView;
 @end
 
 @implementation HTMLLearnerTextEntryViewController
-@synthesize userEntryTextField = _userEntryTextField, lessonCode = _lessonCode, lessonID = _lessonID, hintTextField = _hintTextField;
+@synthesize userEntryTextField = _userEntryTextField, lessonCode = _lessonCode, lessonID = _lessonID, hintView = _hintView, lessonData = _lessonData;
 
--(void)showCode:(NSString *)code forLesson:(NSString *)lesson
+-(void)shareLesson:(HTMLLearnerLessonObject *)l
 {
     //NSLog(@"received code in text entry %@ for lesson %@.", code, lesson);
-    _lessonID = lesson;
-    _lessonCode = code;
+    _lessonData = l;
+    _lessonID = [_lessonData getTitle];
+    _lessonCode = [_lessonData getContent];
 }
 
 - (IBAction)testCode:(id)sender
@@ -35,14 +36,14 @@
     {
         NSString *data = [_userEntryTextField text];
         //load HTML from textview into webview
-        [segue.destinationViewController loadWithHTMLData:data forLesson:_lessonCode];
+        [segue.destinationViewController loadWithHTMLData:data forLesson:_lessonData];
     }
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [[self navigationController] setTitle:_lessonID];
-    [_hintTextField setText:_lessonCode];
+    [_hintView loadHTMLString:_lessonCode baseURL:nil];
     [super viewWillAppear:animated];
 }
 
