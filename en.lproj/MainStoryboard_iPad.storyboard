@@ -151,10 +151,10 @@
             </objects>
             <point key="canvasLocation" x="1175" y="-3301"/>
         </scene>
-        <!--Learner View Controller - Home-->
+        <!--End Tag View Controller - Home-->
         <scene sceneID="4">
             <objects>
-                <viewController id="2" customClass="HTMLLearnerViewController" sceneMemberID="viewController">
+                <viewController id="2" customClass="EndTagViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -232,10 +232,10 @@
             </objects>
             <point key="canvasLocation" x="125" y="-2085"/>
         </scene>
-        <!--Learner View Controller - Lessons-->
+        <!--End Tag View Controller - Lessons-->
         <scene sceneID="A2f-Qp-f4Z">
             <objects>
-                <viewController id="PPW-jz-vt3" customClass="HTMLLearnerViewController" sceneMemberID="viewController">
+                <viewController id="PPW-jz-vt3" customClass="EndTagViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ox4-j0-xw2">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -324,12 +324,12 @@
             </objects>
             <point key="canvasLocation" x="1175" y="-2085"/>
         </scene>
-        <!--Learner Lesson Choice View Controller - LessonChoices-->
+        <!--End Tag Lesson Choice View Controller - LessonChoices-->
         <scene sceneID="nrz-AZ-qkC">
             <objects>
-                <viewController id="Kd7-Hi-8Rx" customClass="HTMLLearnerLessonChoiceViewController" sceneMemberID="viewController">
+                <viewController id="Kd7-Hi-8Rx" customClass="EndTagLessonChoiceViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ufC-SP-0zr">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" sectionIndexMinimumDisplayRowCount="2" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dfW-U1-eep">
@@ -395,12 +395,12 @@
             </objects>
             <point key="canvasLocation" x="-505" y="-613"/>
         </scene>
-        <!--Learner Lesson Preview View Controller - Lesson Solution Preview-->
+        <!--End Tag Lesson Preview View Controller - Lesson Solution Preview-->
         <scene sceneID="EV7-aA-zos">
             <objects>
-                <viewController id="ThS-py-aCp" customClass="HTMLLearnerLessonPreviewViewController" sceneMemberID="viewController">
+                <viewController id="ThS-py-aCp" customClass="EndTagLessonPreviewViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BeA-0C-ibP">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N8S-3l-XIr">
@@ -477,12 +477,12 @@
             </objects>
             <point key="canvasLocation" x="851" y="-199"/>
         </scene>
-        <!--Learner Results View Controller - Results-->
+        <!--End Tag Results View Controller - Results-->
         <scene sceneID="omK-13-eQF">
             <objects>
-                <viewController id="jAm-RF-5cV" customClass="HTMLLearnerResultsViewController" sceneMemberID="viewController">
+                <viewController id="jAm-RF-5cV" customClass="EndTagResultsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JOd-Qv-ZPX">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5hw-1s-5kB">
@@ -551,12 +551,12 @@
             </objects>
             <point key="canvasLocation" x="182" y="1370"/>
         </scene>
-        <!--Learner Evaluation View Controller - Evaluate-->
+        <!--End Tag Evaluation View Controller - Evaluate-->
         <scene sceneID="bk9-rY-E6E">
             <objects>
-                <viewController id="S9r-QG-xBf" customClass="HTMLLearnerEvaluationViewController" sceneMemberID="viewController">
+                <viewController id="S9r-QG-xBf" customClass="EndTagEvaluationViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4ns-SQ-G5M">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="GJ... maybe..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zh-ZO-3nd">
@@ -649,12 +649,12 @@
             </objects>
             <point key="canvasLocation" x="1845" y="1342"/>
         </scene>
-        <!--Learner Text Entry View Controller - Editor-->
+        <!--End Tag Text Entry View Controller - Editor-->
         <scene sceneID="NTj-1J-M7V">
             <objects>
-                <viewController id="XhB-fp-m5G" customClass="HTMLLearnerTextEntryViewController" sceneMemberID="viewController">
+                <viewController id="XhB-fp-m5G" customClass="EndTagTextEntryViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sC1-Z1-uBM">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Type your code here!" translatesAutoresizingMaskIntoConstraints="NO" id="hTe-Z5-wrs">
@@ -785,6 +785,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="R3j-rf-oTF"/>
+        <segue reference="erA-46-6uo"/>
     </inferredMetricsTieBreakers>
 </document>

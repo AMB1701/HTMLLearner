@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HTMLLearnerLessonObject : NSObject
+@interface EndTagLessonObject : NSObject
 
 -(void) setTitle:(NSString *)t;
 -(void) setContent:(NSString *)newContent;

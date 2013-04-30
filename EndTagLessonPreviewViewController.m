@@ -6,20 +6,21 @@
 //  Copyright (c) 2013 CS639. All rights reserved.
 //
 
-#import "HTMLLearnerLessonPreviewViewController.h"
-#import "HTMLLearnerTextEntryViewController.h"
+#import "EndTagLessonPreviewViewController.h"
+#import "EndTagTextEntryViewController.h"
 
-@interface HTMLLearnerLessonPreviewViewController ()
+@interface EndTagLessonPreviewViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UILabel *lessonLabel;
-
+@property (nonatomic, strong) EndTagLessonObject *lessonData;
+@property (nonatomic, strong) NSString *lessonCode;
 
 @end
 
-@implementation HTMLLearnerLessonPreviewViewController
+@implementation EndTagLessonPreviewViewController
 @synthesize webView, lessonCode = _lessonCode, lessonData = _lessonData, lessonLabel = _lessonLabel;
 
--(void) shareLesson:(HTMLLearnerLessonObject *)lesson
+-(void) shareLesson:(EndTagLessonObject *)lesson
 {
     //NSLog(@"received code in preview %@ for lesson %@.", code, lesson);
     _lessonData = lesson;
@@ -28,7 +29,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [_lessonLabel setText:[HTMLLearnerLessonObject stripTags:[_lessonData getTitle]]];
+    [_lessonLabel setText:[EndTagLessonObject stripTags:[_lessonData getTitle]]];
     [webView loadHTMLString:_lessonCode baseURL:nil];
 }
 

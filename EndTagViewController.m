@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 CS639. All rights reserved.
 //
 
-#import "HTMLLearnerViewController.h"
-#import "HTMLLearnerLessonChoiceViewController.h"
+#import "EndTagViewController.h"
+#import "EndTagLessonChoiceViewController.h"
 
-@interface HTMLLearnerViewController ()
+@interface EndTagViewController ()
 @property (nonatomic, strong) NSString *chosenLanguage;
 
 @end
 
-@implementation HTMLLearnerViewController
+@implementation EndTagViewController
 @synthesize chosenLanguage = _chosenLanguage;
 
 - (IBAction)segueToLessons:(id)sender

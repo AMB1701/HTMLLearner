@@ -6,16 +6,20 @@
 //  Copyright (c) 2013 CS639. All rights reserved.
 //
 
-#import "HTMLLearnerLessonChoiceViewController.h"
-#import "HTMLLearnerLessonPreviewViewController.h"
+#import "EndTagLessonChoiceViewController.h"
+#import "EndTagLessonPreviewViewController.h"
+#import "EndTagLessonObject.h"
 
-@interface HTMLLearnerLessonChoiceViewController ()
+
+@interface EndTagLessonChoiceViewController ()
 @property (strong, nonatomic) NSString *lang;
 @property (strong, nonatomic) NSMutableArray * lessonList;
+@property (nonatomic, retain) NSArray *tableData;
+@property (nonatomic, strong) EndTagLessonObject *lessonData;
 @end
 
-@implementation HTMLLearnerLessonChoiceViewController
-@synthesize tableData = _tableData, lessonTitle = _lessonTitle, lang = _lang, lessonList = _lessonList, lessonData = _lessonData;
+@implementation EndTagLessonChoiceViewController
+@synthesize tableData = _tableData, lang = _lang, lessonList = _lessonList, lessonData = _lessonData;
 
 -(void)listItemsForLanguage:(NSString *)language
 {
@@ -59,7 +63,7 @@
                     NSString *sol = [self nextTokenFromString:content];
                     content = [content substringFromIndex:[sol length]+2];
                     //NSLog(@"found title: %@\n  content:%@\n  solution:%@", t, c, sol);
-                    HTMLLearnerLessonObject *lesson = [[HTMLLearnerLessonObject alloc] init];
+                    EndTagLessonObject *lesson = [[EndTagLessonObject alloc] init];
                     [lesson setTitle:t];
                     [lesson setContent:c];
                     [lesson setSolution:sol];
@@ -94,7 +98,7 @@
 {
     if([segue.identifier isEqualToString:@"toSolutionPreviewSegue"])
     {
-        //NSLog(@"fired lesson %@ with data %@", _lessonTitle, _lessonData);
+        //NSLog(@"fired lesson %@ with data %@", _lessonData);
         [segue.destinationViewController shareLesson:_lessonData];
     }
 }
@@ -114,7 +118,7 @@
     if(!cell)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"lessonCell"];
     
-    cell.textLabel.text = [HTMLLearnerLessonObject stripTags:[[_tableData objectAtIndex:indexPath.row] getTitle]];
+    cell.textLabel.text = [EndTagLessonObject stripTags:[[_tableData objectAtIndex:indexPath.row] getTitle]];
     //NSLog(@"filled cell with %@", cell.textLabel.text);
     
     return cell;

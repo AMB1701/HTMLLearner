@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 CS639. All rights reserved.
 //
 
-#import "HTMLLearnerResultsViewController.h"
-#import "HTMLLearnerEvaluationViewController.h"
+#import "EndTagResultsViewController.h"
+#import "EndTagEvaluationViewController.h"
 
-@interface HTMLLearnerResultsViewController ()
+@interface EndTagResultsViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (strong, nonatomic) NSString *pageData;
 @property (weak, nonatomic) IBOutlet UILabel *lessonLabel;
-@property (strong, nonatomic) HTMLLearnerLessonObject *lessonData;
+@property (strong, nonatomic) EndTagLessonObject *lessonData;
 @end
 
-@implementation HTMLLearnerResultsViewController
+@implementation EndTagResultsViewController
 @synthesize webView, pageData = _pageData, lessonData = _lessonData, lessonLabel;
 
 
@@ -33,7 +33,7 @@
     }
 }
 
--(void)loadWithHTMLData:(NSString *) data forLesson:(HTMLLearnerLessonObject *)lesson
+-(void)loadWithHTMLData:(NSString *) data forLesson:(EndTagLessonObject *)lesson
 {
     //NSLog(@"received html string: %@", data);
     //NSLog(@"received solution: %@", lesson);
@@ -44,7 +44,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [webView loadHTMLString:_pageData baseURL:nil];
-    [lessonLabel setText:[HTMLLearnerLessonObject stripTags:[_lessonData getTitle]]];
+    [lessonLabel setText:[EndTagLessonObject stripTags:[_lessonData getTitle]]];
     [super viewWillAppear:animated];
 }
 

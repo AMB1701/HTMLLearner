@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HTMLLearnerViewController : UIViewController
+@interface EndTagViewController : UIViewController
 
 @end

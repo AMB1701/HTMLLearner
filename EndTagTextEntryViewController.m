@@ -6,18 +6,20 @@
 //  Copyright (c) 2013 CS639. All rights reserved.
 //
 
-#import "HTMLLearnerTextEntryViewController.h"
+#import "EndTagTextEntryViewController.h"
+#import "EndTagResultsViewController.h"
 
-@interface HTMLLearnerTextEntryViewController ()
+@interface EndTagTextEntryViewController ()
 @property (strong, nonatomic) NSString* lessonCode;
 @property (strong, nonatomic) NSString* lessonID;
 @property (weak, nonatomic) IBOutlet UIWebView *hintView;
+@property (nonatomic, strong) EndTagLessonObject *lessonData;
 @end
 
-@implementation HTMLLearnerTextEntryViewController
+@implementation EndTagTextEntryViewController
 @synthesize userEntryTextField = _userEntryTextField, lessonCode = _lessonCode, lessonID = _lessonID, hintView = _hintView, lessonData = _lessonData;
 
--(void)shareLesson:(HTMLLearnerLessonObject *)l
+-(void)shareLesson:(EndTagLessonObject *)l
 {
     //NSLog(@"received code in text entry %@ for lesson %@.", code, lesson);
     _lessonData = l;

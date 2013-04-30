@@ -6,16 +6,16 @@
 //  Copyright (c) 2013 CS639. All rights reserved.
 //
 
-#import "HTMLLearnerLessonObject.h"
+#import "EndTagLessonObject.h"
 
-@interface HTMLLearnerLessonObject()
+@interface EndTagLessonObject()
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, strong) NSString *solution;
 @end
 
-@implementation HTMLLearnerLessonObject
+@implementation EndTagLessonObject
 @synthesize title = _title, content = _content, solution = _solution;
 
 +(NSString *) stripTags:(NSString *)tagged
