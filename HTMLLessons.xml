@@ -1,0 +1,29 @@
+<Lesson>
+<title>Lesson 1: Headings</>
+<content><html><body><h2>Headings</h2><br>In the box below, place the following headline in an &lth2&gt header:&nbsp&nbsp<h2>"The Greatest Headline in the World"</h2></body></html></>
+<solution><h2>The Greatest Headline in the World</h2></>
+</>
+
+<Lesson>
+<title>Lesson 2: Paragraphs</>
+<content><html><body>Paragraphs are used to break down content within HTML.  They are defined through the use of &ltp&gt tags, and require start and end tags (&lt/p&gt).<br><br>Choose the correct way to place the sentence into an HTML paragraph.<br><br>“This paragraph is as cool as the other side of the pillow.”</body></html></>
+<solution><p>This paragraph is as cool as the other side of the pillow.</p></>
+</>
+    
+<Lesson>
+<title>Lesson 3: Div</>
+<content><html><body>You can also use div tags to separate blocks of text.  They are defined by &ltdiv&gt, and require start and end tags (&lt/div&gt).<br><br>In the box below, place the following sentence in its own &ltdiv&gt.<br><br>“The coolest block of text we ever saw.”</body></html></>
+<solution><div>The coolest block of text we ever saw.</div></>
+</>
+
+<Lesson>
+<title>Lesson 4: Bold Formatting</>
+<content><html><body>After reviewing lesson 1, you learned that you can use HTML tags to surround text within an HTML page.  By using special HTML tags, you can also format the styling of text.  <br>One example is the bold tag, &ltb&gt:<br><b>bold</b><br>This tag requires start and end tags.<br><br>Write the sentence below in bold:<br><b>When you come to a fork in the road, take it!</b></body></html></>
+<solution><b>When you come to a fork in the road, take it!</b></>
+</>
+    
+<Lesson>
+<title>Lesson 5: Italics Formatting</>
+<content><html><body>After reviewing lesson 1, you learned that you can use HTML tags to surround text within an HTML page.  By using special HTML tags, you can also format the styling of text.  <br>Another example is the italics tag, &lti&gt:<br><i>italics</i><br>This tag requires start and end tags.<br><br>Write the sentence below in italics:<br><i>The best cure for insomnia is to get a lot of sleep.</i></body></html></>
+<solution><i>The best cure for insomnia is to get a lot of sleep.</i></>
+</>

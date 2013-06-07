@@ -27,7 +27,7 @@
     _dataEntered = [@"<solution>" stringByAppendingString:data];
     _dataEntered = [_dataEntered stringByAppendingString:@"</>"];
     _lessonAnswer = [lesson getSolution];
-    NSLog(@"\nD: %@\nA: %@", _dataEntered, _lessonAnswer);
+    //NSLog(@"\nD: %@\nA: %@", _dataEntered, _lessonAnswer);
     errors = 0;
     
     for (NSUInteger i=0; i<[data length] && i < [_lessonAnswer length]; i++)

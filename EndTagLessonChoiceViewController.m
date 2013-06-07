@@ -41,7 +41,7 @@
     if([_lang isEqualToString:@"HTML"])
     {
         //set the HTML file name here
-        path = [[NSBundle mainBundle] pathForResource:@"lessonConcept" ofType:@"xml"];
+        path = [[NSBundle mainBundle] pathForResource:@"HTMLLessons" ofType:@"xml"];
     }
     
     if(path)
@@ -50,44 +50,45 @@
         //NSLog(@"path is %@", path);
         if(content)
         {
+            NSString *t = nil, *c = nil, *sol = nil;
+
             while ([content length] > 0)
             {
-                NSString *s = [self nextTokenFromString:content];
-                content = [content substringFromIndex:[s length]+2];
-                if([s isEqualToString:@"<Lesson>"])
+                NSRange r = [content rangeOfString:@"\n"];
+                NSString *temp = [content substringToIndex:r.location];
+                temp = [temp stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                
+                content = [content substringFromIndex:[temp length]+1];
+                if([temp length] >= 6)
                 {
-                    NSString *t = [self nextTokenFromString:content];
-                    content = [content substringFromIndex:[t length]+2];
-                    NSString *c = [self nextTokenFromString:content];
-                    content = [content substringFromIndex:[c length]+2];
-                    NSString *sol = [self nextTokenFromString:content];
-                    content = [content substringFromIndex:[sol length]+2];
-                    //NSLog(@"found title: %@\n  content:%@\n  solution:%@", t, c, sol);
-                    EndTagLessonObject *lesson = [[EndTagLessonObject alloc] init];
-                    [lesson setTitle:t];
-                    [lesson setContent:c];
-                    [lesson setSolution:sol];
-                    [_lessonList addObject:lesson];
-                    //NSLog(@"lessonList size is now: %d", [_lessonList count]);
+                    NSString *h = [temp substringToIndex:6];
+                    //NSLog(@"h: %@", h);
+                    if([h isEqualToString:@"<title"])
+                        t = temp;
+                    else if([h isEqualToString:@"<conte"])
+                        c = temp;
+                    else if([h isEqualToString:@"<solut"])
+                        sol = temp;
+                    
+                    if(c != nil && t != nil && sol != nil)
+                    {
+                        EndTagLessonObject *lesson = [[EndTagLessonObject alloc] init];
+                        [lesson setTitle:t];
+                        [lesson setContent:c];
+                        [lesson setSolution:sol];
+                        [_lessonList addObject:lesson];
+                        
+                        //NSLog(@"found title: %@\n  content:%@\n  solution:%@", t, c, sol);
+                        //NSLog(@"lessonList size is now: %d", [_lessonList count]);
+                        t = nil; c = nil; sol = nil;
+                    }
                 }
             }
-            
         }
     }
     
     _tableData = [[NSArray alloc] initWithArray:[_lessonList copy]];
-                  //initWithObjects:@"Test Lesson 1", @"Test Lesson 2", nil];
 }
-
--(NSString *)nextTokenFromString:(NSString *)c
-{
-    NSRange r = [c rangeOfString:@"\n"];
-    NSString *t = [c substringToIndex:r.location];
-    t = [t stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    //NSLog(@"returning %@", t);
-    return t;
-}
-
 
 - (IBAction)beginLesson:(id)sender
 {
